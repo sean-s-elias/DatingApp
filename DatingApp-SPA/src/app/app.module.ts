@@ -32,6 +32,7 @@ import { MemberCardComponent } from './members/member-card/member-card.component
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { MemberDetailResolver } from './_resolvers/member-detail.resolver';
 import { MemberLislResolver } from './_resolvers/member-list.resolver';
+import { ListResolver } from './_resolvers/lists.resolver';
 
 
 export function tokenGetter() {
@@ -82,7 +83,8 @@ export function tokenGetter() {
       MemberDetailResolver,
       MemberLislResolver,
       MemberEditResolver,
-      PreventUnsavedChanges
+      PreventUnsavedChanges,
+      ListResolver
    ],
    bootstrap: [
       AppComponent
