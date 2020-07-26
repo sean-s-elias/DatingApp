@@ -18,7 +18,8 @@ export class MessagesResolver implements  Resolve<Message[]> {
 
     resolve(route: ActivatedRouteSnapshot): Observable<Message[]> {
         return this.userService.getMessages(this.authService.decodedToken.nameid,
-                this.pageNumber, this.pageSize, this.messageContainer).pipe(
+                this.pageNumber, this.pageSize, this.messageContainer)
+        .pipe(
             catchError(error => {
                this.alertify.error('Problem rettreving messages');
                this.router.navigate(['/home']);

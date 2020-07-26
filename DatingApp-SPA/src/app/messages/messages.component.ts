@@ -22,12 +22,12 @@ export class MessagesComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.messages = data['messages'].result;
-      this.pagination = data['messages'].Pagination;
-      console.log(this.pagination = data['messages'].Pagination);
+      this.pagination = data['messages'].pagination;
     });
   }
 
-  loadMessages() {
+  loadMessages()
+  {
     this.userService
     .getMessages(
         this.authService.decodedToken.nameid, this.pagination.currentPage,
@@ -41,9 +41,20 @@ export class MessagesComponent implements OnInit {
         });
   }
 
+  deleteMessage(id: number)
+  {
+    this.alertify.confirm('Are you sure want to delete this message?', () => {
+      this.userService.deleteMessage(id, this.authService.decodedToken.nameid).subscribe(() => {
+        this.messages.splice(this.messages.findIndex(m => m.id === id), 1);
+        this.alertify.success('Message has been deleted');
+      }, error => {
+        this.alertify.error('Failed to delete the message');
+      });
+    });
+  }
+
   pageChanged(event: any): void {
     this.pagination.currentPage = event.page;
     this.loadMessages();
   }
-
 }
