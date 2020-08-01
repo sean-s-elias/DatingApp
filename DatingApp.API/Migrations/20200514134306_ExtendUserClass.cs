@@ -29,8 +29,8 @@ namespace DatingApp.API.Migrations
                 table: "Users",
                 nullable: true);
 
-            migrationBuilder.AddColumn<int>(
-                name: "Inroduction",
+            migrationBuilder.AddColumn<string>(
+                name: "Introduction",
                 table: "Users",
                 nullable: false,
                 defaultValue: 0);

@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "DatingApp-SPA"
+    }
+  },
+  "defaultProject": "DatingApp-SPA",
+  "cli": {
+    "analytics": "7a2dc470-6d56-493b-a5b5-df9ffd096b58"
+  }
 }

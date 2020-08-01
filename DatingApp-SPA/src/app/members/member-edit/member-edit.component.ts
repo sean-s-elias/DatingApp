@@ -30,7 +30,7 @@ export class MemberEditComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.user = data['user'];
     });
-    this.auhService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl)
+    this.auhService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
   }
 
   updateUser(){
