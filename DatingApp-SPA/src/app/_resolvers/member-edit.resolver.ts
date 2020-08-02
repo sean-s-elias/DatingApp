@@ -1,3 +1,4 @@
+import { AlertMessage } from './../_models/AlertMessage';
 import { AuthService } from './../_services/auth.service';
 import { catchError } from 'rxjs/operators';
 import { Observable, of} from 'rxjs';
@@ -15,7 +16,7 @@ export class MemberEditResolver implements  Resolve<User> {
     resolve(route: ActivatedRouteSnapshot): Observable<User> {
         return this.userService.getUser(this.auhService.decodedToken.nameid).pipe(
             catchError(error => {
-               this.alertify.error('Problem rettreving your data');
+               this.alertify.error(AlertMessage.resolverMessageError);
                this.router.navigate['/members'];
                return of(null);
             })

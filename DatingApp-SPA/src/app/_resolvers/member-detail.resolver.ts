@@ -1,3 +1,4 @@
+import { AlertMessage } from './../_models/AlertMessage';
 import { catchError } from 'rxjs/operators';
 import { Observable, of} from 'rxjs';
 import { AlertifyService } from './../_services/alertify.service';
@@ -14,7 +15,7 @@ export class MemberDetailResolver implements  Resolve<User> {
     resolve(route: ActivatedRouteSnapshot): Observable<User> {
         return this.userService.getUser(route.params['id']).pipe(
             catchError(error => {
-               this.alertify.error('Problem rettreving data');
+               this.alertify.error(AlertMessage.resolverMessageError);
                this.router.navigate['/members'];
                return of(null);
             })

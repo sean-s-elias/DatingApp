@@ -1,3 +1,4 @@
+import { AlertMessage } from './../_models/AlertMessage';
 import { AlertifyService } from './../_services/alertify.service';
 import { AuthService } from './../_services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -21,7 +22,7 @@ export class NavComponent implements OnInit {
   login()
   {
     this.authService.login(this.model).subscribe(next => {
-      this.alertfy.success('Logged in sucessfully');
+      this.alertfy.success(AlertMessage.loginSuccess);
     }, error => {
       this.alertfy.error(error);
     }, () => {

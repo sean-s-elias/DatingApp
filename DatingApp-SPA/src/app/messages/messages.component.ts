@@ -1,3 +1,4 @@
+import { AlertMessage } from './../_models/AlertMessage';
 import { AuthService } from './../_services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { Pagination, PaginatedResult } from './../_models/Pagination';
@@ -43,12 +44,12 @@ export class MessagesComponent implements OnInit {
 
   deleteMessage(id: number)
   {
-    this.alertify.confirm('Are you sure want to delete this message?', () => {
+    this.alertify.confirm(AlertMessage.deleteMessageConfirm, () => {
       this.userService.deleteMessage(id, this.authService.decodedToken.nameid).subscribe(() => {
         this.messages.splice(this.messages.findIndex(m => m.id === id), 1);
-        this.alertify.success('Message has been deleted');
+        this.alertify.success(AlertMessage.deleteMessageSuccess);
       }, error => {
-        this.alertify.error('Failed to delete the message');
+        this.alertify.error(AlertMessage.deleteMessageError);
       });
     });
   }

@@ -1,3 +1,4 @@
+import { AlertMessage } from './../../_models/AlertMessage';
 import { AlertifyService } from './../../_services/alertify.service';
 import { UserService } from './../../_services/user.service';
 import { AuthService } from './../../_services/auth.service';
@@ -21,7 +22,7 @@ export class MemberCardComponent implements OnInit {
   sendLike(id: number)
   {
     this.userService.sendLike(this.authService.decodedToken.nameid, id).subscribe(data => {
-      this.alertify.success('You have liked: ' + this.user.knownAs);
+      this.alertify.success(AlertMessage.sendLikeSuccess + this.user.knownAs);
     }, error => {
       this.alertify.error(error);
     });

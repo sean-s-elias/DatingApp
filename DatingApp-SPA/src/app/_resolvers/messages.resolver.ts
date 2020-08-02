@@ -1,3 +1,4 @@
+import { AlertMessage } from './../_models/AlertMessage';
 import { AuthService } from './../_services/auth.service';
 import { catchError } from 'rxjs/operators';
 import { Observable, of} from 'rxjs';
@@ -21,7 +22,7 @@ export class MessagesResolver implements  Resolve<Message[]> {
                 this.pageNumber, this.pageSize, this.messageContainer)
         .pipe(
             catchError(error => {
-               this.alertify.error('Problem rettreving messages');
+               this.alertify.error(AlertMessage.resolverMessageError);
                this.router.navigate(['/home']);
                return of(null);
             })

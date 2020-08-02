@@ -1,3 +1,4 @@
+import { AlertMessage } from './../../_models/AlertMessage';
 import { AuthService } from './../../_services/auth.service';
 import { UserService } from './../../_services/user.service';
 import { AlertifyService } from './../../_services/alertify.service';
@@ -35,7 +36,7 @@ export class MemberEditComponent implements OnInit {
 
   updateUser(){
     this.userService.updateUser(this.auhService.decodedToken.nameid, this.user).subscribe(next => {
-      this.alertify.success('Changes has been updated');
+      this.alertify.success(AlertMessage.updateUserSuccess);
       this.editForm.reset(this.user);
     }, error => {
       this.alertify.error(error);

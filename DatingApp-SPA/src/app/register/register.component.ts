@@ -1,3 +1,4 @@
+import { AlertMessage } from './../_models/AlertMessage';
 import { Router } from '@angular/router';
 import { AuthService } from './../_services/auth.service';
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
@@ -50,7 +51,7 @@ export class RegisterComponent implements OnInit {
     {
       this.user = Object.assign({}, this.registerForm.value);
       this.authService.register(this.user).subscribe(() => {
-        this.alertfy.success('Registeration successful');
+        this.alertfy.success(AlertMessage.registerSuccess);
       }, error => {
         this.alertfy.error(error);
       }, () => {

@@ -1,3 +1,4 @@
+import { AlertMessage } from './../../_models/AlertMessage';
 import { UserService } from './../../_services/user.service';
 import { AuthService } from './../../_services/auth.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
@@ -79,12 +80,12 @@ export class PhotoEditorComponent implements OnInit {
   }
 
   deletePhoto(id: number) {
-    this.alertify.confirm('Are you sure you want to delete this photo?', () => {
+    this.alertify.confirm(AlertMessage.deletePhotoConfirm, () => {
       this.userService.deletePhoto(this.authService.decodedToken.nameid, id).subscribe(() => {
         this.photos.splice(this.photos.findIndex(p => p.id === id), 1);
-        this.alertify.success('Photo has been deleted');
+        this.alertify.success(AlertMessage.deletePhotoSuccess);
       }, error => {
-        this.alertify.error('Failed to delete the photo');
+        this.alertify.error(AlertMessage.deletePhotoError);
       });
     });
   }
