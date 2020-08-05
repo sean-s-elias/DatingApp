@@ -14,14 +14,16 @@ DatingApp is built with ASP.NET CORE 3.0 and Angular 9, the app allows users to
 
 ## Getting Started
 
-1- Install ASP.NET CORE 3.0
+1- Install Node: 12.16.2
 
-2- Install the Angular CLI: npm install -g @angular/cli
+2- Install ASP.NET CORE 3.0
 
-3- Open Command promot and CD into the project
+3- Install the Angular CLI: npm install -g @angular/cli
 
-4- Run npm install
+4- Open Command promot and CD into the project
 
-5- CD into DatingApp.API then run dotnet run
+5- Run npm install
 
-6- CD into DatingApp.SPA then run ng serve then navigate to http://localhost:4200/ (The app will automatically reload if you change any of the source files)
+6- CD into DatingApp.API then run dotnet run
+
+7- CD into DatingApp.SPA then run ng serve then navigate to http://localhost:4200/ (The app will automatically reload if you change any of the source files)
