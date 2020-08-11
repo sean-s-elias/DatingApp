@@ -26,4 +26,4 @@ DatingApp is built with ASP.NET CORE 3.0 and Angular 9, the app allows users to
 
 6- CD into DatingApp.API then run `dotnet run`
 
-7- CD into DatingApp.SPA then run ng serve then navigate to http://localhost:4200/ (The app will automatically reload if you change any of the source files)
+7- CD into DatingApp.SPA then run `ng serve` then navigate to http://localhost:4200/ (The app will automatically reload if you change any of the source files)
