@@ -20,6 +20,9 @@ namespace DatingApp.API.Controllers
     {
         public readonly IDatingRepository _repo;
         public readonly IMapper _mapper;
+
+        AuthorizeController authorize = new AuthorizeController();
+
         public UsersController(IDatingRepository repo, IMapper mapper)
         {
             _mapper = mapper;
@@ -29,7 +32,7 @@ namespace DatingApp.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetUsers([FromQuery]UserParams userParams)
         {
-            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var currentUserId = GeCurrentUserId();
 
             var userFromRepo = await _repo.GetUser(currentUserId);
 
@@ -63,10 +66,7 @@ namespace DatingApp.API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUser(int id, UserForUpdateDto userForUpdateDto)
         {   
-            if(id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-            {
-                return Unauthorized();
-            }
+            authorize.IsCurrentUser(id, GeCurrentUserId());
 
             var userFromRepo = await _repo.GetUser(id);
 
@@ -82,10 +82,7 @@ namespace DatingApp.API.Controllers
         [HttpPost("{id}/like/{recipientId}")]
         public async Task<IActionResult> LikeUser(int id, int recipientId)
         {
-            if(id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-            {
-                return Unauthorized();
-            }
+            authorize.IsCurrentUser(id, GeCurrentUserId());
 
             var like = await _repo.GetLike(id, recipientId);
 
@@ -113,5 +110,10 @@ namespace DatingApp.API.Controllers
             return BadRequest("Failed to like user");    
         }
 
+        //Get logged in user Id
+        private int GeCurrentUserId()
+        {
+           return int.Parse(User.GetUserId());
+        }
     }
 }
